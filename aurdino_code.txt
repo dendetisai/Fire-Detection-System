@@ -1,0 +1,35 @@
+const int buzzerPin = 10;
+const int redLedPin = 13;
+const int greenLedPin = 5;
+void setup() {
+Serial.begin(9600);
+pinMode(buzzerPin, OUTPUT);
+pinMode(redLedPin, OUTPUT);
+pinMode(greenLedPin, OUTPUT);
+// Green LED ON initially
+digitalWrite(buzzerPin, LOW);
+digitalWrite(redLedPin, LOW);
+digitalWrite(greenLedPin, HIGH);
+57
+}
+void loop() {
+if (Serial.available() > 0) {
+String input = Serial.readStringUntil('\n');
+input.trim();
+input.toUpperCase();
+if (input == "HIGH")
+{
+// Fire Alert Mode (Immediate ON)
+digitalWrite(greenLedPin, LOW);
+digitalWrite(redLedPin, HIGH);
+digitalWrite(buzzerPin, HIGH)
+}
+else if (input == "LOW")
+{
+// Safe Mode (Immediate OFF)
+digitalWrite(greenLedPin, HIGH);
+digitalWrite(redLedPin, LOW);
+digitalWrite(buzzerPin, LOW);
+}
+}
+}
